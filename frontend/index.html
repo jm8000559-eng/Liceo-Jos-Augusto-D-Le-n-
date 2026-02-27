@@ -11,6 +11,7 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         body {
             min-height: 100vh;
             background-color: #b8e2f2;
@@ -21,138 +22,173 @@
             position: relative;
             overflow-x: hidden;
         }
+
+        /* Elementos decorativos */
         .decor-element {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(255, 255, 255, 0.7) inset;
-            backdrop-filter: blur(2px);
-            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(255, 255, 255, 0.8) inset;
+            backdrop-filter: blur(3px);
+            border-radius: 15px;
             transform: rotate(var(--rot, 0deg));
             z-index: 0;
         }
+
         .pencil {
-            width: 60px;
-            height: 12px;
+            width: 70px;
+            height: 14px;
             background: linear-gradient(90deg, #f9e076 0%, #f9e076 70%, #c0a85d 70%, #c0a85d 80%, #e67e22 80%);
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 0 0 2px rgba(255,255,255,0.8) inset;
+            border-radius: 25px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.1), 0 0 0 3px rgba(255,255,255,0.9) inset;
             position: relative;
         }
         .pencil::after {
             content: '';
             position: absolute;
-            width: 8px;
-            height: 12px;
+            width: 10px;
+            height: 14px;
             background: #2c3e50;
-            right: -4px;
+            right: -5px;
             top: 0;
-            border-radius: 2px;
-            box-shadow: 0 0 0 2px rgba(255,255,255,0.8) inset;
+            border-radius: 3px;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.9) inset;
         }
+
         .backpack {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 15px 15px 25px 25px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 0 0 2px rgba(255,255,255,0.9) inset;
+            width: 90px;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.65);
+            border-radius: 20px 20px 30px 30px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1), 0 0 0 3px rgba(255,255,255,0.9) inset;
             position: relative;
         }
         .backpack::before {
             content: '';
             position: absolute;
-            width: 40px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.5);
-            top: -10px;
-            left: 20px;
-            border-radius: 10px 10px 0 0;
-            box-shadow: 0 -4px 0 rgba(255,255,255,0.7) inset;
+            width: 45px;
+            height: 25px;
+            background: rgba(255, 255, 255, 0.6);
+            top: -12px;
+            left: 22px;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 -5px 0 rgba(255,255,255,0.8) inset;
         }
         .backpack::after {
             content: '';
             position: absolute;
-            width: 30px;
-            height: 30px;
-            border: 3px solid rgba(255,255,255,0.8);
+            width: 35px;
+            height: 35px;
+            border: 4px solid rgba(255,255,255,0.9);
             border-radius: 50%;
-            bottom: 10px;
-            left: 25px;
-            box-shadow: 0 0 0 2px rgba(255,255,255,0.5) inset;
+            bottom: 12px;
+            left: 27px;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.6) inset;
         }
+
         .books {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
         }
         .book {
-            width: 70px;
-            height: 15px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 3px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 0 0 2px rgba(255,255,255,0.9) inset;
+            width: 80px;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: 4px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.1), 0 0 0 3px rgba(255,255,255,0.9) inset;
         }
-        .book:nth-child(2) { width: 80px; }
-        .book:nth-child(3) { width: 60px; }
-        .decor1 { top: 10%; left: 5%; --rot: -5deg; }
-        .decor2 { bottom: 15%; right: 8%; --rot: 10deg; }
-        .decor3 { top: 20%; right: 15%; --rot: 0deg; }
-        .decor4 { bottom: 25%; left: 10%; --rot: 15deg; }
-        .decor5 { top: 60%; left: 20%; --rot: -10deg; }
-        .decor6 { bottom: 10%; left: 30%; --rot: 5deg; }
+        .book:nth-child(2) { width: 90px; }
+        .book:nth-child(3) { width: 70px; }
+        .book:nth-child(4) { width: 60px; }
+
+        .ruler {
+            width: 100px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.1), 0 0 0 3px rgba(255,255,255,0.9) inset;
+            position: relative;
+        }
+        .ruler::after {
+            content: '▏▏▏▏▏';
+            position: absolute;
+            font-size: 12px;
+            color: rgba(0,0,0,0.2);
+            left: 5px;
+            top: -2px;
+            letter-spacing: 8px;
+        }
+
+        .decor1 { top: 5%; left: 2%; --rot: -8deg; }
+        .decor2 { bottom: 10%; right: 3%; --rot: 12deg; }
+        .decor3 { top: 15%; right: 10%; --rot: 3deg; }
+        .decor4 { bottom: 20%; left: 8%; --rot: 20deg; }
+        .decor5 { top: 60%; left: 5%; --rot: -15deg; }
+        .decor6 { bottom: 5%; left: 20%; --rot: 7deg; }
+        .decor7 { top: 30%; right: 20%; --rot: -5deg; }
+        .decor8 { bottom: 40%; right: 15%; --rot: 10deg; }
+        .decor9 { top: 70%; left: 15%; --rot: 25deg; }
+        .decor10 { bottom: 60%; right: 5%; --rot: -12deg; }
+        .decor11 { top: 45%; left: 25%; --rot: 5deg; }
+        .decor12 { bottom: 75%; right: 25%; --rot: -8deg; }
+
         .main-card {
-            background-color: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(8px);
-            border-radius: 40px;
-            padding: 40px 30px;
-            max-width: 550px;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 45px 35px;
+            max-width: 600px;
             width: 100%;
-            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(255, 255, 255, 0.8) inset;
+            box-shadow: 0 30px 45px rgba(0, 0, 0, 0.2), 0 0 0 3px rgba(255, 255, 255, 0.9) inset;
             z-index: 10;
             position: relative;
-            border: 1px solid rgba(255,255,255,0.5);
+            border: 2px solid rgba(255,255,255,0.6);
         }
+
         .logo {
             text-align: center;
             margin-bottom: 30px;
         }
         .logo h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 800;
             color: #0b3b5c;
-            text-shadow: 2px 2px 0 rgba(255,255,255,0.8);
-            letter-spacing: 1px;
+            text-shadow: 3px 3px 0 rgba(255,255,255,0.8);
+            letter-spacing: 2px;
         }
         .logo h1 span {
             display: block;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 400;
         }
         .logo p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #1e4a6b;
-            background: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.6);
             display: inline-block;
-            padding: 8px 20px;
-            border-radius: 50px;
+            padding: 10px 25px;
+            border-radius: 60px;
             margin-top: 15px;
             font-weight: 500;
             backdrop-filter: blur(4px);
-            box-shadow: 0 2px 0 rgba(255,255,255,0.8) inset;
+            box-shadow: 0 3px 0 rgba(255,255,255,0.8) inset;
         }
+
         .welcome {
             text-align: center;
             margin-bottom: 40px;
         }
         .welcome h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #0b3b5c;
             margin-bottom: 10px;
         }
         .welcome p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #1e4a6b;
         }
+
         .buttons {
             display: flex;
             flex-direction: column;
@@ -160,17 +196,17 @@
             margin-bottom: 30px;
         }
         .btn {
-            padding: 16px 20px;
+            padding: 18px 22px;
             border: none;
-            border-radius: 60px;
-            font-size: 1.3rem;
+            border-radius: 70px;
+            font-size: 1.4rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
             text-decoration: none;
             display: block;
-            box-shadow: 0 8px 0 rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(255,255,255,0.8) inset;
+            box-shadow: 0 10px 0 rgba(0, 0, 0, 0.1), 0 0 0 3px rgba(255,255,255,0.9) inset;
             backdrop-filter: blur(4px);
         }
         .btn-primary {
@@ -179,8 +215,8 @@
         }
         .btn-primary:hover {
             background-color: #1e5f7e;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 0 rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(255,255,255,0.8) inset;
+            transform: translateY(-3px);
+            box-shadow: 0 13px 0 rgba(0, 0, 0, 0.1), 0 0 0 3px rgba(255,255,255,0.9) inset;
         }
         .btn-secondary {
             background-color: #f4f9ff;
@@ -188,39 +224,55 @@
         }
         .btn-secondary:hover {
             background-color: #e0ecf9;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
+
         .footer {
             text-align: center;
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: #1e4a6b;
             margin-top: 20px;
             padding-top: 10px;
-            border-top: 1px dashed rgba(255,255,255,0.6);
+            border-top: 2px dashed rgba(255,255,255,0.7);
         }
+
         @media (max-width: 600px) {
             .main-card { padding: 30px 20px; }
-            .logo h1 { font-size: 2rem; }
-            .logo h1 span { font-size: 1.4rem; }
-            .welcome h2 { font-size: 1.6rem; }
+            .logo h1 { font-size: 2.5rem; }
+            .logo h1 span { font-size: 1.6rem; }
+            .welcome h2 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
+    <!-- Elementos decorativos -->
     <div class="decor-element pencil decor1"></div>
     <div class="decor-element backpack decor2"></div>
     <div class="decor-element books decor3">
         <div class="book"></div>
         <div class="book"></div>
         <div class="book"></div>
-    </div>
-    <div class="decor-element pencil decor4" style="width:80px;"></div>
-    <div class="decor-element backpack decor5"></div>
-    <div class="decor-element books decor6">
-        <div class="book"></div>
-        <div class="book"></div>
         <div class="book"></div>
     </div>
+    <div class="decor-element ruler decor4"></div>
+    <div class="decor-element pencil decor5" style="width:90px;"></div>
+    <div class="decor-element backpack decor6"></div>
+    <div class="decor-element books decor7">
+        <div class="book"></div>
+        <div class="book"></div>
+        <div class="book"></div>
+    </div>
+    <div class="decor-element ruler decor8"></div>
+    <div class="decor-element pencil decor9"></div>
+    <div class="decor-element backpack decor10"></div>
+    <div class="decor-element books decor11">
+        <div class="book"></div>
+        <div class="book"></div>
+        <div class="book"></div>
+    </div>
+    <div class="decor-element ruler decor12"></div>
+
+    <!-- Tarjeta principal -->
     <div class="main-card">
         <div class="logo">
             <h1>
@@ -234,7 +286,8 @@
             <p>Gestión de notas, eventos y más</p>
         </div>
         <div class="buttons">
-            <a href="login.html" class="btn btn-primary">Iniciar sesión</a>
+            <!-- Botón con JavaScript forzado -->
+            <button onclick="window.location.href='login.html'" class="btn btn-primary">Iniciar sesión</button>
             <a href="registro.html" class="btn btn-secondary">Registrarse</a>
         </div>
         <div class="footer">
