@@ -11,7 +11,6 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         body {
             min-height: 100vh;
             background-color: #b8e2f2;
@@ -22,8 +21,6 @@
             position: relative;
             overflow-x: hidden;
         }
-
-        /* Elementos decorativos */
         .decor-element {
             position: absolute;
             background-color: rgba(255, 255, 255, 0.6);
@@ -33,7 +30,6 @@
             transform: rotate(var(--rot, 0deg));
             z-index: 0;
         }
-
         .pencil {
             width: 70px;
             height: 14px;
@@ -53,7 +49,6 @@
             border-radius: 3px;
             box-shadow: 0 0 0 3px rgba(255,255,255,0.9) inset;
         }
-
         .backpack {
             width: 90px;
             height: 90px;
@@ -84,7 +79,6 @@
             left: 27px;
             box-shadow: 0 0 0 3px rgba(255,255,255,0.6) inset;
         }
-
         .books {
             display: flex;
             flex-direction: column;
@@ -101,7 +95,6 @@
         .book:nth-child(2) { width: 90px; }
         .book:nth-child(3) { width: 70px; }
         .book:nth-child(4) { width: 60px; }
-
         .ruler {
             width: 100px;
             height: 12px;
@@ -119,7 +112,6 @@
             top: -2px;
             letter-spacing: 8px;
         }
-
         .decor1 { top: 5%; left: 2%; --rot: -8deg; }
         .decor2 { bottom: 10%; right: 3%; --rot: 12deg; }
         .decor3 { top: 15%; right: 10%; --rot: 3deg; }
@@ -132,7 +124,6 @@
         .decor10 { bottom: 60%; right: 5%; --rot: -12deg; }
         .decor11 { top: 45%; left: 25%; --rot: 5deg; }
         .decor12 { bottom: 75%; right: 25%; --rot: -8deg; }
-
         .main-card {
             background-color: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
@@ -145,7 +136,6 @@
             position: relative;
             border: 2px solid rgba(255,255,255,0.6);
         }
-
         .logo {
             text-align: center;
             margin-bottom: 30px;
@@ -174,7 +164,6 @@
             backdrop-filter: blur(4px);
             box-shadow: 0 3px 0 rgba(255,255,255,0.8) inset;
         }
-
         .welcome {
             text-align: center;
             margin-bottom: 40px;
@@ -188,7 +177,6 @@
             font-size: 1.3rem;
             color: #1e4a6b;
         }
-
         .buttons {
             display: flex;
             flex-direction: column;
@@ -226,7 +214,6 @@
             background-color: #e0ecf9;
             transform: translateY(-3px);
         }
-
         .footer {
             text-align: center;
             font-size: 1rem;
@@ -235,7 +222,6 @@
             padding-top: 10px;
             border-top: 2px dashed rgba(255,255,255,0.7);
         }
-
         @media (max-width: 600px) {
             .main-card { padding: 30px 20px; }
             .logo h1 { font-size: 2.5rem; }
@@ -245,7 +231,6 @@
     </style>
 </head>
 <body>
-    <!-- Elementos decorativos -->
     <div class="decor-element pencil decor1"></div>
     <div class="decor-element backpack decor2"></div>
     <div class="decor-element books decor3">
@@ -271,14 +256,9 @@
         <div class="book"></div>
     </div>
     <div class="decor-element ruler decor12"></div>
-
-    <!-- Tarjeta principal -->
     <div class="main-card">
         <div class="logo">
-            <h1>
-                LICEO<br>
-                <span>JOSÉ AUGUSTO D' LEÓN</span>
-            </h1>
+            <h1>LICEO<br><span>JOSÉ AUGUSTO D' LEÓN</span></h1>
             <p>Fundada en 1978 · Los Robles · Est. Nacional Española</p>
         </div>
         <div class="welcome">
@@ -286,8 +266,7 @@
             <p>Gestión de notas, eventos y más</p>
         </div>
         <div class="buttons">
-            <!-- Botón con JavaScript forzado -->
-            <button onclick="window.location.href='login.html'" class="btn btn-primary">Iniciar sesión</button>
+            <a href="login.html" class="btn btn-primary">Iniciar sesión</a>
             <a href="registro.html" class="btn btn-secondary">Registrarse</a>
         </div>
         <div class="footer">
