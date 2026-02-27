@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liceo José Augusto D' León</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background-color: #b8e2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .decor-element {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(255, 255, 255, 0.7) inset;
+            backdrop-filter: blur(2px);
+            border-radius: 10px;
+            transform: rotate(var(--rot, 0deg));
+            z-index: 0;
+        }
+        .pencil {
+            width: 60px;
+            height: 12px;
+            background: linear-gradient(90deg, #f9e076 0%, #f9e076 70%, #c0a85d 70%, #c0a85d 80%, #e67e22 80%);
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 0 0 2px rgba(255,255,255,0.8) inset;
+            position: relative;
+        }
+        .pencil::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 12px;
+            background: #2c3e50;
+            right: -4px;
+            top: 0;
+            border-radius: 2px;
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.8) inset;
+        }
+        .backpack {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 15px 15px 25px 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1), 0 0 0 2px rgba(255,255,255,0.9) inset;
+            position: relative;
+        }
+        .backpack::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            top: -10px;
+            left: 20px;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -4px 0 rgba(255,255,255,0.7) inset;
+        }
+        .backpack::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(255,255,255,0.8);
+            border-radius: 50%;
+            bottom: 10px;
+            left: 25px;
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.5) inset;
+        }
+        .books {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .book {
+            width: 70px;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 3px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 0 0 2px rgba(255,255,255,0.9) inset;
+        }
+        .book:nth-child(2) { width: 80px; }
+        .book:nth-child(3) { width: 60px; }
+        .decor1 { top: 10%; left: 5%; --rot: -5deg; }
+        .decor2 { bottom: 15%; right: 8%; --rot: 10deg; }
+        .decor3 { top: 20%; right: 15%; --rot: 0deg; }
+        .decor4 { bottom: 25%; left: 10%; --rot: 15deg; }
+        .decor5 { top: 60%; left: 20%; --rot: -10deg; }
+        .decor6 { bottom: 10%; left: 30%; --rot: 5deg; }
+        .main-card {
+            background-color: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 40px 30px;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(255, 255, 255, 0.8) inset;
+            z-index: 10;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #0b3b5c;
+            text-shadow: 2px 2px 0 rgba(255,255,255,0.8);
+            letter-spacing: 1px;
+        }
+        .logo h1 span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 400;
+        }
+        .logo p {
+            font-size: 1.1rem;
+            color: #1e4a6b;
+            background: rgba(255,255,255,0.5);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-top: 15px;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 0 rgba(255,255,255,0.8) inset;
+        }
+        .welcome {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .welcome h2 {
+            font-size: 2rem;
+            color: #0b3b5c;
+            margin-bottom: 10px;
+        }
+        .welcome p {
+            font-size: 1.2rem;
+            color: #1e4a6b;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .btn {
+            padding: 16px 20px;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            box-shadow: 0 8px 0 rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(255,255,255,0.8) inset;
+            backdrop-filter: blur(4px);
+        }
+        .btn-primary {
+            background-color: #2a7faa;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #1e5f7e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0 rgba(0, 0, 0, 0.1), 0 0 0 2px rgba(255,255,255,0.8) inset;
+        }
+        .btn-secondary {
+            background-color: #f4f9ff;
+            color: #0b3b5c;
+        }
+        .btn-secondary:hover {
+            background-color: #e0ecf9;
+            transform: translateY(-2px);
+        }
+        .footer {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #1e4a6b;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(255,255,255,0.6);
+        }
+        @media (max-width: 600px) {
+            .main-card { padding: 30px 20px; }
+            .logo h1 { font-size: 2rem; }
+            .logo h1 span { font-size: 1.4rem; }
+            .welcome h2 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="decor-element pencil decor1"></div>
+    <div class="decor-element backpack decor2"></div>
+    <div class="decor-element books decor3">
+        <div class="book"></div>
+        <div class="book"></div>
+        <div class="book"></div>
+    </div>
+    <div class="decor-element pencil decor4" style="width:80px;"></div>
+    <div class="decor-element backpack decor5"></div>
+    <div class="decor-element books decor6">
+        <div class="book"></div>
+        <div class="book"></div>
+        <div class="book"></div>
+    </div>
+    <div class="main-card">
+        <div class="logo">
+            <h1>
+                LICEO<br>
+                <span>JOSÉ AUGUSTO D' LEÓN</span>
+            </h1>
+            <p>Fundada en 1978 · Los Robles · Est. Nacional Española</p>
+        </div>
+        <div class="welcome">
+            <h2>¡Bienvenidos!</h2>
+            <p>Gestión de notas, eventos y más</p>
+        </div>
+        <div class="buttons">
+            <a href="login.html" class="btn btn-primary">Iniciar sesión</a>
+            <a href="registro.html" class="btn btn-secondary">Registrarse</a>
+        </div>
+        <div class="footer">
+            Plataforma educativa para toda la comunidad liceísta · Todos los años y secciones
+        </div>
+    </div>
+</body>
+</html>
