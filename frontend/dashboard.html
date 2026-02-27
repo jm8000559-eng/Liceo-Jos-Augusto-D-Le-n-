@@ -29,6 +29,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         .user-info {
             background: rgba(255,255,255,0.2);
@@ -86,10 +88,35 @@
             border-radius: 20px;
             font-size: 0.9rem;
         }
+        .role-badge {
+            background: #ffc107;
+            color: #0b3b5c;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.5);
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .nav-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
-                gap: 15px;
                 text-align: center;
             }
         }
@@ -105,42 +132,14 @@
             <div class="user-info" id="userInfo">
                 Cargando...
             </div>
+            <div class="nav-buttons" id="navButtons">
+                <!-- Los botones se generarán según el rol -->
+            </div>
             <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
         </div>
 
-        <div class="cards">
-            <div class="card">
-                <h3>📊 Mis Notas</h3>
-                <ul id="notasList">
-                    <li>Matemáticas <span class="badge">18.5</span></li>
-                    <li>Historia <span class="badge">16.0</span></li>
-                    <li>Química <span class="badge">14.5</span></li>
-                    <li>Lengua <span class="badge">17.0</span></li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h3>📅 Inasistencias</h3>
-                <ul id="asistenciasList">
-                    <li>15/Abr/2024 <span class="badge">Enfermedad</span></li>
-                    <li>22/Abr/2024 <span class="badge">Justificado</span></li>
-                    <li>10/May/2024 <span class="badge">Retraso</span></li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h3>🔔 Próximos Eventos</h3>
-                <ul id="eventosList">
-                    <li>📌 Entrega de notas <span>30/May</span></li>
-                    <li>📌 Día del estudiante <span>15/Jun</span></li>
-                    <li>📌 Reunión de padres <span>20/Jun</span></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="card">
-            <h3>📋 Información del Estudiante</h3>
-            <p id="infoCompleta">Cargando datos del usuario...</p>
+        <div id="contenidoPrincipal">
+            <!-- El contenido se cargará según el rol -->
         </div>
     </div>
 
@@ -155,20 +154,140 @@
         // Mostrar información del usuario
         document.getElementById('userInfo').innerHTML = `
             <strong>${user.nombre}</strong><br>
-            Rol: ${user.rol}
+            <span class="role-badge">${user.rol}</span>
         `;
 
-        document.getElementById('infoCompleta').innerHTML = `
-            <strong>Nombre:</strong> ${user.nombre}<br>
-            <strong>Rol:</strong> ${user.rol}<br>
-            <strong>ID de usuario:</strong> ${user.id}<br>
-            <small>Aquí se mostrarán más datos cuando conectemos con el backend</small>
-        `;
-
+        // Función para cerrar sesión
         function logout() {
             localStorage.clear();
             window.location.href = 'index.html';
         }
+
+        // Función para navegar a páginas específicas
+        function irAPagina(pagina) {
+            window.location.href = pagina;
+        }
+
+        // Generar botones de navegación según el rol
+        const navButtons = document.getElementById('navButtons');
+        const contenidoPrincipal = document.getElementById('contenidoPrincipal');
+
+        if (user.rol === 'estudiante') {
+            navButtons.innerHTML = `
+                <button class="nav-btn" onclick="irAPagina('estudiante.html')">📊 Mis Notas</button>
+                <button class="nav-btn" onclick="irAPagina('eventos.html')">📅 Eventos</button>
+            `;
+            contenidoPrincipal.innerHTML = `
+                <div class="cards">
+                    <div class="card">
+                        <h3>📊 Mis Notas</h3>
+                        <ul>
+                            <li>Matemáticas <span class="badge">Cargando...</span></li>
+                            <li>Historia <span class="badge">Cargando...</span></li>
+                            <li>Química <span class="badge">Cargando...</span></li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>📅 Inasistencias</h3>
+                        <ul>
+                            <li>Últimas 3: <span class="badge">Cargando...</span></li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>🔔 Próximos Eventos</h3>
+                        <ul>
+                            <li>📌 Cargando eventos...</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>📋 Información del Estudiante</h3>
+                    <p><strong>Nombre:</strong> ${user.nombre}</p>
+                    <p><strong>Rol:</strong> ${user.rol}</p>
+                    <p><strong>ID:</strong> ${user.id}</p>
+                    <p><small>Los datos reales se cargarán cuando conectemos con el backend</small></p>
+                </div>
+            `;
+        } 
+        else if (user.rol === 'profesor') {
+            navButtons.innerHTML = `
+                <button class="nav-btn" onclick="irAPagina('profesor.html')">👥 Mis Secciones</button>
+                <button class="nav-btn" onclick="irAPagina('cargar-notas.html')">📝 Cargar Notas</button>
+                <button class="nav-btn" onclick="irAPagina('eventos.html')">📅 Crear Evento</button>
+            `;
+            contenidoPrincipal.innerHTML = `
+                <div class="cards">
+                    <div class="card">
+                        <h3>👥 Mis Secciones</h3>
+                        <ul>
+                            <li>4to Año "A" <span class="badge">32 estudiantes</span></li>
+                            <li>4to Año "B" <span class="badge">28 estudiantes</span></li>
+                            <li>5to Año "A" <span class="badge">25 estudiantes</span></li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>📝 Últimas Notas Cargadas</h3>
+                        <ul>
+                            <li>Matemáticas 4to A <span class="badge">15/05</span></li>
+                            <li>Historia 5to B <span class="badge">14/05</span></li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>🔔 Eventos Próximos</h3>
+                        <ul>
+                            <li>📌 Reunión de profesores <span class="badge">25/05</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>📋 Información del Profesor</h3>
+                    <p><strong>Nombre:</strong> ${user.nombre}</p>
+                    <p><strong>Rol:</strong> ${user.rol}</p>
+                    <p><strong>ID:</strong> ${user.id}</p>
+                </div>
+            `;
+        } 
+        else if (user.rol === 'coordinador') {
+            navButtons.innerHTML = `
+                <button class="nav-btn" onclick="irAPagina('coordinador.html')">📊 Estadísticas</button>
+                <button class="nav-btn" onclick="irAPagina('gestion-usuarios.html')">👥 Gestionar Usuarios</button>
+                <button class="nav-btn" onclick="irAPagina('eventos.html')">📅 Eventos</button>
+            `;
+            contenidoPrincipal.innerHTML = `
+                <div class="cards">
+                    <div class="card">
+                        <h3>📊 Resumen General</h3>
+                        <ul>
+                            <li>Total Estudiantes <span class="badge">245</span></li>
+                            <li>Total Profesores <span class="badge">18</span></li>
+                            <li>Total Secciones <span class="badge">12</span></li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>📝 Últimos Registros</h3>
+                        <ul>
+                            <li>Nuevo estudiante <span class="badge">Hoy</span></li>
+                            <li>Nuevo profesor <span class="badge">Ayer</span></li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>🔔 Notificaciones</h3>
+                        <ul>
+                            <li>📌 3 solicitudes de justificación</li>
+                            <li>📌 2 eventos pendientes</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>📋 Información del Coordinador</h3>
+                    <p><strong>Nombre:</strong> ${user.nombre}</p>
+                    <p><strong>Rol:</strong> ${user.rol}</p>
+                    <p><strong>ID:</strong> ${user.id}</p>
+                </div>
+            `;
+        }
+
+        // Aquí luego conectaremos con el backend para cargar datos reales
     </script>
 </body>
 </html>
