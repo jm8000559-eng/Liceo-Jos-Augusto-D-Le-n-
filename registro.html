@@ -2,130 +2,65 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - Liceo</title>
+    <title>Registro</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
         body {
-            background: linear-gradient(135deg, #b8e2f2, #8fc5e8);
+            background: #b8e2f2;
             display: flex;
-            align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
         }
-        .registro-card {
-            background: rgba(255,255,255,0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 40px;
+        .form-box {
+            background: white;
             padding: 40px;
-            max-width: 600px;
-            width: 100%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-        h1 {
-            color: #0b3b5c;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #1e4a6b;
-            font-weight: 600;
+            border-radius: 30px;
+            width: 400px;
         }
         input, select {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 50px;
-            font-size: 1rem;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 20px;
         }
         button {
             width: 100%;
-            padding: 15px;
+            padding: 12px;
             background: #2a7faa;
             color: white;
             border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
+            border-radius: 20px;
             cursor: pointer;
-            margin-top: 20px;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="registro-card">
-        <h1>Registro de Estudiante</h1>
-        <form id="registroForm">
-            <div class="form-group">
-                <label>Nombre Completo</label>
-                <input type="text" id="nombre" required>
-            </div>
-            <div class="form-group">
-                <label>Cédula</label>
-                <input type="text" id="cedula" required>
-            </div>
-            <div class="form-group">
-                <label>Teléfono 1</label>
-                <input type="tel" id="telefono1" required>
-            </div>
-            <div class="form-group">
-                <label>Teléfono 2 (opcional)</label>
-                <input type="tel" id="telefono2">
-            </div>
-            <div class="form-group">
-                <label>Año</label>
-                <select id="anio" required>
-                    <option value="">Seleccione</option>
-                    <option value="1er año">1er año</option>
-                    <option value="2do año">2do año</option>
-                    <option value="3er año">3er año</option>
-                    <option value="4to año">4to año</option>
-                    <option value="5to año">5to año</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Sección</label>
-                <input type="text" id="seccion" placeholder="Ej: A, B, C, D" required>
-            </div>
-            <div class="form-group">
-                <label>Edad</label>
-                <input type="number" id="edad" required>
-            </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" id="email" required>
-            </div>
-            <div class="form-group">
-                <label>Contraseña</label>
-                <input type="password" id="password" required>
-            </div>
-            <!-- Rol fijo: estudiante (oculto) -->
-            <input type="hidden" id="rol" value="estudiante">
-            <button type="submit">Registrarse</button>
-        </form>
-        <div class="footer">
-            ¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a>
-        </div>
+    <div class="form-box">
+        <h2>Registro de Estudiante</h2>
+        <input id="nombre" placeholder="Nombre completo">
+        <input id="cedula" placeholder="Cédula">
+        <input id="telefono1" placeholder="Teléfono 1">
+        <input id="telefono2" placeholder="Teléfono 2 (opcional)">
+        <select id="anio">
+            <option value="1er año">1er año</option>
+            <option value="2do año">2do año</option>
+            <option value="3er año">3er año</option>
+            <option value="4to año">4to año</option>
+            <option value="5to año">5to año</option>
+        </select>
+        <input id="seccion" placeholder="Sección (A, B, C, D)">
+        <input id="edad" type="number" placeholder="Edad">
+        <input id="email" type="email" placeholder="Email">
+        <input id="password" type="password" placeholder="Contraseña">
+        <button onclick="registrar()">Registrarse</button>
+        <p><a href="login.html">Ya tengo cuenta</a></p>
     </div>
 
     <script src="js/config.js"></script>
     <script>
-        document.getElementById('registroForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+        async function registrar() {
             const data = {
                 nombre: document.getElementById('nombre').value,
                 cedula: document.getElementById('cedula').value,
@@ -136,25 +71,22 @@
                 edad: parseInt(document.getElementById('edad').value),
                 email: document.getElementById('email').value,
                 password: document.getElementById('password').value,
-                rol: 'estudiante' // fijo
+                rol: 'estudiante'  // fijo
             };
-            try {
-                const response = await fetch(`${API_URL}/api/register`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-                const result = await response.json();
-                if (response.ok) {
-                    alert('Registro exitoso. Ahora inicia sesión.');
-                    window.location.href = 'login.html';
-                } else {
-                    alert(result.error || 'Error en el registro');
-                }
-            } catch (error) {
-                alert('Error de conexión con el servidor');
+
+            const res = await fetch(`${API_URL}/api/register`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            if (res.ok) {
+                alert('Registro exitoso');
+                window.location.href = 'login.html';
+            } else {
+                alert('Error: ' + (result.error || 'Error'));
             }
-        });
+        }
     </script>
 </body>
 </html>
