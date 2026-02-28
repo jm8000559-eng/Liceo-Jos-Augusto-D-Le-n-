@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - Liceo José Augusto D' León</title>
+    <title>Registro - Liceo</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
         body {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #b8e2f2 0%, #8fc5e8 100%);
+            background: linear-gradient(135deg, #b8e2f2, #8fc5e8);
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
             padding: 20px;
         }
         .registro-card {
-            background-color: rgba(255, 255, 255, 0.9);
+            background: rgba(255,255,255,0.9);
             backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 40px 30px;
+            border-radius: 40px;
+            padding: 40px;
             max-width: 600px;
             width: 100%;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         h1 {
-            text-align: center;
             color: #0b3b5c;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            text-align: center;
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         label {
             display: block;
@@ -45,51 +45,30 @@
         input, select {
             width: 100%;
             padding: 12px;
-            border: 2px solid rgba(255,255,255,0.8);
+            border: 2px solid #e0e0e0;
             border-radius: 50px;
-            background: rgba(255,255,255,0.6);
             font-size: 1rem;
-            outline: none;
         }
-        input:focus, select:focus {
-            border-color: #2a7faa;
-        }
-        .btn {
+        button {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(145deg, #2a7faa, #1e5f7e);
+            padding: 15px;
+            background: #2a7faa;
             color: white;
             border: none;
             border-radius: 50px;
             font-size: 1.2rem;
-            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
         }
         .footer {
             text-align: center;
             margin-top: 20px;
         }
-        .footer a {
-            color: #2a7faa;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .error {
-            color: red;
-            text-align: center;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
     <div class="registro-card">
-        <h1>Registro de Usuario</h1>
+        <h1>Registro de Estudiante</h1>
         <form id="registroForm">
             <div class="form-group">
                 <label>Nombre Completo</label>
@@ -134,27 +113,19 @@
                 <label>Contraseña</label>
                 <input type="password" id="password" required>
             </div>
-            <div class="form-group">
-                <label>Rol</label>
-                <select id="rol">
-                    <option value="estudiante">Estudiante</option>
-                    <option value="profesor">Profesor</option>
-                    <option value="coordinador">Coordinador</option>
-                </select>
-            </div>
-            <button type="submit" class="btn">Registrarse</button>
-            <div class="error" id="errorMsg"></div>
+            <!-- Rol fijo: estudiante (oculto) -->
+            <input type="hidden" id="rol" value="estudiante">
+            <button type="submit">Registrarse</button>
         </form>
         <div class="footer">
             ¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a>
         </div>
     </div>
+
     <script src="js/config.js"></script>
     <script>
         document.getElementById('registroForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const errorMsg = document.getElementById('errorMsg');
-            errorMsg.textContent = '';
             const data = {
                 nombre: document.getElementById('nombre').value,
                 cedula: document.getElementById('cedula').value,
@@ -165,7 +136,7 @@
                 edad: parseInt(document.getElementById('edad').value),
                 email: document.getElementById('email').value,
                 password: document.getElementById('password').value,
-                rol: document.getElementById('rol').value
+                rol: 'estudiante' // fijo
             };
             try {
                 const response = await fetch(`${API_URL}/api/register`, {
@@ -178,10 +149,10 @@
                     alert('Registro exitoso. Ahora inicia sesión.');
                     window.location.href = 'login.html';
                 } else {
-                    errorMsg.textContent = result.error || 'Error en el registro';
+                    alert(result.error || 'Error en el registro');
                 }
             } catch (error) {
-                errorMsg.textContent = 'Error de conexión con el servidor';
+                alert('Error de conexión con el servidor');
             }
         });
     </script>
