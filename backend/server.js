@@ -85,7 +85,7 @@ app.post('/api/login', async (req, res) => {
 
 // Sincronizar base de datos y arrancar servidor
 const PORT = process.env.PORT || 3000;
-sequelize.sync({ alter: true }).then(() => {
+sequelize.sync().then(() => {
   app.listen(PORT, () => {
     console.log(`Servidor corriendo en puerto ${PORT}`);
   });
