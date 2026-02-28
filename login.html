@@ -1,36 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
+<html>
 <body>
-    <h2>Iniciar Sesión</h2>
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Contraseña">
+    <h2>Login</h2>
+    <input id="email" placeholder="Email">
+    <input id="pass" type="password" placeholder="Contraseña">
     <button onclick="login()">Entrar</button>
 
     <script>
         function login() {
             const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            const pass = document.getElementById('pass').value;
 
             fetch('https://liceo-jos-augusto-d-le-n.onrender.com/api/login', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({email, password: pass})
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.token) {
-                    alert('Login exitoso');
+            .then(r => r.json())
+            .then(d => {
+                if (d.token) {
+                    alert('✅ Bienvenido ' + d.usuario.nombre);
                     window.location.href = 'dashboard.html';
                 } else {
-                    alert('Error: ' + (data.error || 'Credenciales incorrectas'));
+                    alert('❌ ' + d.error);
                 }
             })
-            .catch(err => {
-                alert('Error de conexión');
+            .catch(e => {
+                alert('❌ Error de conexión');
             });
         }
     </script>
