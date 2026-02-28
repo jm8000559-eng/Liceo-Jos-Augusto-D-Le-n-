@@ -12,266 +12,118 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
+            background: linear-gradient(135deg, #b8e2f2 0%, #8fc5e8 100%);
             min-height: 100vh;
-            background-color: #b8e2f2;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
         }
-        .decor-element {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(255, 255, 255, 0.8) inset;
-            backdrop-filter: blur(3px);
-            border-radius: 15px;
-            transform: rotate(var(--rot, 0deg));
-            z-index: 0;
-        }
-        .pencil {
-            width: 70px;
-            height: 14px;
-            background: linear-gradient(90deg, #f9e076 0%, #f9e076 70%, #c0a85d 70%, #c0a85d 80%, #e67e22 80%);
-            border-radius: 25px;
-            box-shadow: 0 6px 10px rgba(0,0,0,0.1), 0 0 0 3px rgba(255,255,255,0.9) inset;
-            position: relative;
-        }
-        .pencil::after {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 14px;
-            background: #2c3e50;
-            right: -5px;
-            top: 0;
-            border-radius: 3px;
-            box-shadow: 0 0 0 3px rgba(255,255,255,0.9) inset;
-        }
-        .backpack {
-            width: 90px;
-            height: 90px;
-            background: rgba(255, 255, 255, 0.65);
-            border-radius: 20px 20px 30px 30px;
-            box-shadow: 0 15px 25px rgba(0,0,0,0.1), 0 0 0 3px rgba(255,255,255,0.9) inset;
-            position: relative;
-        }
-        .backpack::before {
-            content: '';
-            position: absolute;
-            width: 45px;
-            height: 25px;
-            background: rgba(255, 255, 255, 0.6);
-            top: -12px;
-            left: 22px;
-            border-radius: 15px 15px 0 0;
-            box-shadow: 0 -5px 0 rgba(255,255,255,0.8) inset;
-        }
-        .backpack::after {
-            content: '';
-            position: absolute;
-            width: 35px;
-            height: 35px;
-            border: 4px solid rgba(255,255,255,0.9);
-            border-radius: 50%;
-            bottom: 12px;
-            left: 27px;
-            box-shadow: 0 0 0 3px rgba(255,255,255,0.6) inset;
-        }
-        .books {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-        }
-        .book {
-            width: 80px;
-            height: 18px;
-            background: rgba(255, 255, 255, 0.75);
-            border-radius: 4px;
-            box-shadow: 0 6px 10px rgba(0,0,0,0.1), 0 0 0 3px rgba(255,255,255,0.9) inset;
-        }
-        .book:nth-child(2) { width: 90px; }
-        .book:nth-child(3) { width: 70px; }
-        .book:nth-child(4) { width: 60px; }
-        .ruler {
-            width: 100px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 20px;
-            box-shadow: 0 6px 10px rgba(0,0,0,0.1), 0 0 0 3px rgba(255,255,255,0.9) inset;
-            position: relative;
-        }
-        .ruler::after {
-            content: '▏▏▏▏▏';
-            position: absolute;
-            font-size: 12px;
-            color: rgba(0,0,0,0.2);
-            left: 5px;
-            top: -2px;
-            letter-spacing: 8px;
-        }
-        .decor1 { top: 5%; left: 2%; --rot: -8deg; }
-        .decor2 { bottom: 10%; right: 3%; --rot: 12deg; }
-        .decor3 { top: 15%; right: 10%; --rot: 3deg; }
-        .decor4 { bottom: 20%; left: 8%; --rot: 20deg; }
-        .decor5 { top: 60%; left: 5%; --rot: -15deg; }
-        .decor6 { bottom: 5%; left: 20%; --rot: 7deg; }
-        .decor7 { top: 30%; right: 20%; --rot: -5deg; }
-        .decor8 { bottom: 40%; right: 15%; --rot: 10deg; }
-        .decor9 { top: 70%; left: 15%; --rot: 25deg; }
-        .decor10 { bottom: 60%; right: 5%; --rot: -12deg; }
-        .decor11 { top: 45%; left: 25%; --rot: 5deg; }
-        .decor12 { bottom: 75%; right: 25%; --rot: -8deg; }
-        .main-card {
-            background-color: rgba(255, 255, 255, 0.8);
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             border-radius: 50px;
-            padding: 45px 35px;
-            max-width: 600px;
-            width: 100%;
-            box-shadow: 0 30px 45px rgba(0, 0, 0, 0.2), 0 0 0 3px rgba(255, 255, 255, 0.9) inset;
-            z-index: 10;
-            position: relative;
-            border: 2px solid rgba(255,255,255,0.6);
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
-        .logo {
+        .header {
             text-align: center;
             margin-bottom: 30px;
         }
-        .logo h1 {
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
             font-size: 3rem;
-            font-weight: 800;
             color: #0b3b5c;
-            text-shadow: 3px 3px 0 rgba(255,255,255,0.8);
-            letter-spacing: 2px;
+            text-shadow: 2px 2px 0 rgba(255,255,255,0.8);
         }
-        .logo h1 span {
-            display: block;
-            font-size: 2rem;
+        .header h2 {
+            font-size: 1.8rem;
+            color: #1e4a6b;
             font-weight: 400;
+            margin-top: 10px;
         }
-        .logo p {
-            font-size: 1.2rem;
-            color: #1e4a6b;
+        .info-box {
             background: rgba(255,255,255,0.6);
-            display: inline-block;
-            padding: 10px 25px;
-            border-radius: 60px;
-            margin-top: 15px;
-            font-weight: 500;
-            backdrop-filter: blur(4px);
-            box-shadow: 0 3px 0 rgba(255,255,255,0.8) inset;
+            border-radius: 30px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid rgba(255,255,255,0.8);
         }
-        .welcome {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .welcome h2 {
-            font-size: 2.2rem;
+        .info-box p {
+            font-size: 1.2rem;
             color: #0b3b5c;
-            margin-bottom: 10px;
-        }
-        .welcome p {
-            font-size: 1.3rem;
-            color: #1e4a6b;
+            margin-bottom: 15px;
+            line-height: 1.6;
         }
         .buttons {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
         }
         .btn {
-            padding: 18px 22px;
+            padding: 15px 40px;
             border: none;
-            border-radius: 70px;
-            font-size: 1.4rem;
+            border-radius: 60px;
+            font-size: 1.3rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
+            transition: all 0.3s;
             text-decoration: none;
-            display: block;
-            box-shadow: 0 10px 0 rgba(0, 0, 0, 0.1), 0 0 0 3px rgba(255,255,255,0.9) inset;
-            backdrop-filter: blur(4px);
-        }
-        .btn-primary {
-            background-color: #2a7faa;
+            display: inline-block;
+            background: #2a7faa;
             color: white;
+            box-shadow: 0 8px 0 #1e5f7e;
         }
-        .btn-primary:hover {
-            background-color: #1e5f7e;
+        .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 13px 0 rgba(0, 0, 0, 0.1), 0 0 0 3px rgba(255,255,255,0.9) inset;
+            box-shadow: 0 12px 0 #1e5f7e;
         }
         .btn-secondary {
-            background-color: #f4f9ff;
+            background: #f4f9ff;
             color: #0b3b5c;
+            box-shadow: 0 8px 0 #d0e0f0;
         }
         .btn-secondary:hover {
-            background-color: #e0ecf9;
-            transform: translateY(-3px);
+            box-shadow: 0 12px 0 #d0e0f0;
         }
-        .footer {
+        footer {
             text-align: center;
-            font-size: 1rem;
+            margin-top: 40px;
             color: #1e4a6b;
-            margin-top: 20px;
-            padding-top: 10px;
-            border-top: 2px dashed rgba(255,255,255,0.7);
-        }
-        @media (max-width: 600px) {
-            .main-card { padding: 30px 20px; }
-            .logo h1 { font-size: 2.5rem; }
-            .logo h1 span { font-size: 1.6rem; }
-            .welcome h2 { font-size: 1.8rem; }
+            font-size: 0.95rem;
         }
     </style>
 </head>
 <body>
-    <div class="decor-element pencil decor1"></div>
-    <div class="decor-element backpack decor2"></div>
-    <div class="decor-element books decor3">
-        <div class="book"></div>
-        <div class="book"></div>
-        <div class="book"></div>
-        <div class="book"></div>
-    </div>
-    <div class="decor-element ruler decor4"></div>
-    <div class="decor-element pencil decor5" style="width:90px;"></div>
-    <div class="decor-element backpack decor6"></div>
-    <div class="decor-element books decor7">
-        <div class="book"></div>
-        <div class="book"></div>
-        <div class="book"></div>
-    </div>
-    <div class="decor-element ruler decor8"></div>
-    <div class="decor-element pencil decor9"></div>
-    <div class="decor-element backpack decor10"></div>
-    <div class="decor-element books decor11">
-        <div class="book"></div>
-        <div class="book"></div>
-        <div class="book"></div>
-    </div>
-    <div class="decor-element ruler decor12"></div>
-    <div class="main-card">
-        <div class="logo">
-            <h1>LICEO<br><span>JOSÉ AUGUSTO D' LEÓN</span></h1>
-            <p>Fundada en 1978 · Los Robles · Est. Nacional Española</p>
+    <div class="container">
+        <div class="header">
+            <!-- Logo (simulado con texto, pero puedes poner una imagen) -->
+            <div class="logo" style="font-size: 2rem;">🎓</div>
+            <h1>LICEO JOSÉ AUGUSTO D' LEÓN</h1>
+            <h2>Excelencia y Compromiso Educativo</h2>
         </div>
-        <div class="welcome">
-            <h2>¡Bienvenidos!</h2>
-            <p>Gestión de notas, eventos y más</p>
+
+        <div class="info-box">
+            <p><strong>Fundado en 1978</strong>, el Liceo José Augusto D' León es una institución educativa pública ubicada en <strong>Los Robles, Municipio Maneiro, Estado Nueva Esparta, Venezuela</strong>. Con más de 45 años de trayectoria, nos dedicamos a formar integralmente a nuestros estudiantes, promoviendo valores, conocimiento y desarrollo personal.</p>
+            <p>Nuestra oferta académica abarca desde 1er año hasta 5to año de educación media general, con un equipo docente altamente calificado y una infraestructura diseñada para el aprendizaje. Creemos en la educación como base del progreso y trabajamos día a día para brindar a nuestros alumnos las herramientas necesarias para su futuro.</p>
+            <p><strong>¡Bienvenidos a su liceo!</strong></p>
         </div>
+
         <div class="buttons">
-            <a href="login.html" class="btn btn-primary">Iniciar sesión</a>
+            <a href="login.html" class="btn">Iniciar sesión</a>
             <a href="registro.html" class="btn btn-secondary">Registrarse</a>
         </div>
-        <div class="footer">
-            Plataforma educativa para toda la comunidad liceísta · Todos los años y secciones
-        </div>
+
+        <footer>
+            <p>Los Robles, Municipio Maneiro - Estado Nueva Esparta, Venezuela</p>
+            <p>Fundado en 1978 · Est. Nacional Española</p>
+        </footer>
     </div>
 </body>
 </html>
