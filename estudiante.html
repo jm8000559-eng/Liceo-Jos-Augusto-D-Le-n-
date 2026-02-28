@@ -5,12 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Perfil - Estudiante</title>
     <style>
-        /* Estilos iguales a los que ya tienes */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #b8e2f2;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background: linear-gradient(145deg, #2a7faa, #1e5f7e);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 30px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.5);
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2a7faa;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 30px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            color: #0b3b5c;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            text-align: left;
+            padding: 12px;
+            background: #f0f8ff;
+            color: #0b3b5c;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        .badge {
+            background: #2a7faa;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .evento-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Encabezado igual -->
+        <div class="header">
+            <a href="dashboard.html" class="back-btn">← Volver</a>
+            <div class="user-badge" id="userInfo">Cargando...</div>
+        </div>
+
+        <!-- Estadísticas vacías -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number" id="promedioGeneral">-</div>
@@ -30,6 +135,7 @@
             </div>
         </div>
 
+        <!-- Notas y Asistencias vacías -->
         <div class="grid-2">
             <div class="card">
                 <h2>📊 Mis Notas</h2>
@@ -38,7 +144,7 @@
                         <tr><th>Materia</th><th>Nota</th><th>Fecha</th></tr>
                     </thead>
                     <tbody id="notasBody">
-                        <tr><td colspan="3">No hay notas registradas</td></tr>
+                        <tr><td colspan="3" style="text-align:center;">No hay notas registradas</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -46,34 +152,42 @@
                 <h2>📅 Inasistencias</h2>
                 <table>
                     <thead>
-                        <tr><th>Fecha</th><th>Estado</th><th>Justificación</th><th>Acción</th></tr>
+                        <tr><th>Fecha</th><th>Estado</th><th>Justificación</th></tr>
                     </thead>
                     <tbody id="asistenciasBody">
-                        <tr><td colspan="4">No hay inasistencias registradas</td></tr>
+                        <tr><td colspan="3" style="text-align:center;">No hay inasistencias registradas</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
+        <!-- Eventos vacíos -->
         <div class="card">
             <h2>🔔 Próximos Eventos</h2>
-            <div id="eventosList">No hay eventos próximos</div>
+            <div id="eventosList">
+                <p style="text-align:center;">No hay eventos próximos</p>
+            </div>
         </div>
 
+        <!-- Información personal -->
         <div class="card">
             <h2>📋 Mi Información</h2>
             <div id="infoPersonal">Cargando...</div>
         </div>
     </div>
+
     <script src="js/config.js"></script>
     <script>
         const user = JSON.parse(localStorage.getItem('user'));
         if (!user) window.location.href = 'login.html';
-        document.getElementById('infoPersonal').innerHTML = `<p><strong>Nombre:</strong> ${user.nombre}</p><p><strong>Rol:</strong> ${user.rol}</p><p>Los datos reales se cargarán desde el backend.</p>`;
-        // Funciones vacías (sin datos de ejemplo)
-        async function cargarNotas() { /* llamada real al backend */ }
-        async function cargarAsistencias() {}
-        async function cargarEventos() {}
+
+        document.getElementById('userInfo').innerHTML = `<strong>${user.nombre}</strong><br><small>${user.rol}</small>`;
+        document.getElementById('infoPersonal').innerHTML = `
+            <p><strong>Nombre:</strong> ${user.nombre}</p>
+            <p><strong>Email:</strong> ${user.email || 'Cargando...'}</p>
+            <p><strong>Rol:</strong> ${user.rol}</p>
+            <p><em>Los datos académicos se cargarán cuando sean registrados por los profesores.</em></p>
+        `;
     </script>
 </body>
 </html>
