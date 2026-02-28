@@ -2,97 +2,37 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - Liceo</title>
-    <style>
-        body {
-            background: #b8e2f2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-        }
-        .login-box {
-            background: white;
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            width: 350px;
-            text-align: center;
-        }
-        h2 {
-            color: #0b3b5c;
-            margin-bottom: 30px;
-        }
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid #e0e0e0;
-            border-radius: 50px;
-            font-size: 16px;
-        }
-        button {
-            width: 100%;
-            padding: 14px;
-            background: #2a7faa;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        button:hover {
-            background: #1e5f7e;
-        }
-        .register-link {
-            margin-top: 20px;
-            display: block;
-            color: #2a7faa;
-        }
-    </style>
+    <title>Login</title>
 </head>
 <body>
-    <div class="login-box">
-        <h2>Iniciar Sesión</h2>
-        <form id="loginForm">
-            <input type="email" id="email" placeholder="Correo electrónico" required>
-            <input type="password" id="password" placeholder="Contraseña" required>
-            <button type="submit">Entrar</button>
-        </form>
-        <a href="registro.html" class="register-link">Registrarse</a>
-    </div>
+    <h2>Iniciar Sesión</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button onclick="login()">Entrar</button>
 
-    <script src="js/config.js"></script>
     <script>
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
+        function login() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            try {
-                const response = await fetch(`${API_URL}/api/login`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    localStorage.setItem('token', data.token);
-                    localStorage.setItem('user', JSON.stringify(data.usuario));
+            fetch('https://liceo-jos-augusto-d-le-n.onrender.com/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.token) {
+                    alert('Login exitoso');
                     window.location.href = 'dashboard.html';
                 } else {
                     alert('Error: ' + (data.error || 'Credenciales incorrectas'));
                 }
-            } catch (error) {
-                alert('Error de conexión con el servidor');
-            }
-        });
+            })
+            .catch(err => {
+                alert('Error de conexión');
+            });
+        }
     </script>
 </body>
 </html>
